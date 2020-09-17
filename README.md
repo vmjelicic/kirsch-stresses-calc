@@ -1,6 +1,6 @@
 # Kirsch's Stresses Calculator
 
-Scripts list:
+### Scripts list:
 - Induced Stresses Calc
 - front_GUI
 - load_parameters_GUI
@@ -8,7 +8,6 @@ Scripts list:
 - export_data_GUI
 - induced_stresses_calc_backend
 
-Explanation of each script:
 ### Induced Stresses Calc
 Is the main script, who use Tkinter for generate a GUI with 4 tabs called: "How to Use" (front_GUI), "Load Parameters" (load_parameters_GUI), "Visualization" (visualization_GUI) and "Export Data" (export_data_GUI). In addition, it has a "dark mode" that modifies the color of the widgets.
 
