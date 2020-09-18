@@ -31,6 +31,7 @@ Contain a tab called "Visualization". In this tab the results are shown, where y
 Contain a tab called "Export Data". In this tab you can export the result of the calculations in a .csv file, where you can select a specific variables or export an entire file.
 
 ### induced_stresses_calc_backend
-Contain a data treatment and functions used to realize stress calculations, including Kirsch's stresses formulas, rotate functions and overlap stresses functions. Also, this script considers the following objects: "BoundaryBox", "Geometry_circle" and "Geometry_ellipse", where all of calculations are realizing in the BoundaryBox object and the geometries are used as restrictions for the points generation and as input parameters for each Kirsch formulae.
+Contain a data treatment and functions used to realize stress calculations, including Kirsch's stresses formulas, rotate functions and overlap stresses functions. Also, this script considers the following objects: "BoundaryBox", "Geometry_circle" and "Geometry_ellipse", where all of calculations are realizing in the BoundaryBox object, while the geometries are used as restrictions for the points generation and as input parameters for each Kirsch's formulae.
+
 
 ##### P.D.: The comments in the scripts are written in Spanish, I must translate them into English.
