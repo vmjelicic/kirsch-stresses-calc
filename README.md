@@ -36,6 +36,10 @@ Contain a data treatment and functions used to realize stress calculations, incl
 
 ##### P.D.: The comments in the scripts are written in Spanish, I must translate them into English.
 
+
 Some views of the app:
 
 <img src="https://github.com/vmyelicich/kirsch-stresses-calc/blob/master/views/Screenshot_6963.png" width="50%" height="50%"/></img>
+<img src="https://github.com/vmyelicich/kirsch-stresses-calc/blob/master/views/Screenshot_6964.png" width="50%" height="50%"/></img>
+<img src="https://github.com/vmyelicich/kirsch-stresses-calc/blob/master/views/Screenshot_6965.png" width="50%" height="50%"/></img>
+<img src="https://github.com/vmyelicich/kirsch-stresses-calc/blob/master/views/Screenshot_6966.png" width="50%" height="50%"/></img>
