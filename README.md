@@ -35,3 +35,6 @@ Contain a data treatment and functions used to realize stress calculations, incl
 
 
 ##### P.D.: The comments in the scripts are written in Spanish, I must translate them into English.
+
+Some views of the app:
+
