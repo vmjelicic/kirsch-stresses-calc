@@ -38,4 +38,4 @@ Contain a data treatment and functions used to realize stress calculations, incl
 
 Some views of the app:
 
-<img src="https://github.com/vmyelicich/kirsch-stresses-calc/edit/master/views/Screenshot_6963.png" /></img>
+<img src="https://https://github.com/vmyelicich/kirsch-stresses-calc/blob/master/views/Screenshot_6963.png" /></img>
