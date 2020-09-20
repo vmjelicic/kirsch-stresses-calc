@@ -22,9 +22,9 @@ Contain a tab called "Visualization". In this tab the results are shown, where y
 - Major principal stress (P)
 - Minor principal stress (Q)
 - Max shear stress (Tmax)
-- Normal stress - X-axis
-- Normal stress - Y-axis
-- Shear stress- XY-plane
+- Normal stress - X-axis (Sx)
+- Normal stress - Y-axis (Sy)
+- Shear stress - XY-plane (Txy)
 - Strength factor
 
 ### export_data_GUI
