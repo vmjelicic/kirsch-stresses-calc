@@ -1,6 +1,15 @@
 # Kirsch's Stresses Calculator
 
-### Scripts list:
+### Language used
+- Python 3.8
+
+### Libraries
+- Tkinter
+- Numpy
+- Pandas
+- Matplotlib
+
+### Scripts list
 - Induced Stresses Calc
 - front_GUI
 - load_parameters_GUI
@@ -34,11 +43,11 @@ Contain a tab called "Export Data". In this tab you can export the result of the
 Contain a data treatment and functions used to realize stress calculations, including Kirsch's stresses formulas, rotate functions and overlap stresses functions. Also, this script considers the following objects: "BoundaryBox", "Geometry_circle" and "Geometry_ellipse", where all of calculations are realizing in the BoundaryBox object, while the geometries are used as restrictions for the points generation and as input parameters for each Kirsch's formulae.
 
 
-##### P.D.: The comments in the scripts are written in Spanish, I must translate them into English.
+#### P.D.: The comments in the scripts are written in Spanish, I must translate them into English.
 
 
 
-##### Some views of the app:
+### Some views of the app:
 
 <img src="https://github.com/vmyelicich/kirsch-stresses-calc/blob/master/views/Screenshot_6963.png" width="80%" height="80%"/></img>
 
