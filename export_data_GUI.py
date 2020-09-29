@@ -85,10 +85,10 @@ class ExportDataFrame(ttk.Frame):
         file_path = os.path.join(folder_path, file_name + ".csv")
 
         if self.select_variable.get():
-            boundarybox.boundary_df[variables_to_export].to_csv(file_path, sep=",")
+            boundarybox.boundary_df[variables_to_export].to_csv(file_path, sep=",", index=False)
         
         else:
-            boundarybox.boundary_df.to_csv(file_path, sep=",")
+            boundarybox.boundary_df.to_csv(file_path, sep=",", index=False)
 
         self.variable_to_export_entry.delete(0, "end")
         self.folder_root_entry.config(state="normal")
