@@ -28,8 +28,10 @@ class ExportDataFrame(ttk.Frame):
         self.variable_to_export_entry.config(state="disabled")
 
         self.select_variable = tk.IntVar()
-        self.select_variable_button = ttk.Checkbutton(self, command=self.active_select_variable, 
-                                                      variable=self.select_variable, onvalue=1, offvalue=0)
+        self.select_variable_button = ttk.Checkbutton(
+            self, command=self.active_select_variable, 
+            variable=self.select_variable, onvalue=1, offvalue=0
+        )
         self.select_variable_button.grid(row=1, column=3, sticky="e")
         ttk.Label(self, text="Activate selection").grid(row=1, column=4, sticky="w", padx=5)
 

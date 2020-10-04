@@ -237,12 +237,13 @@ class BoundaryBox:
         min_value = input("Min value to legend: ")
         max_value = input("Max value to legend: ")
 
-        graphic = plt.scatter(x = self.boundary_df["x"], 
-                            y = self.boundary_df["y"], 
-                            c = self.boundary_df[selection], 
-                            cmap = "coolwarm", 
-                            s = 1 #Tamaño de los puntos
-                            ) 
+        graphic = plt.scatter(
+            x = self.boundary_df["x"], 
+            y = self.boundary_df["y"], 
+            c = self.boundary_df[selection], 
+            cmap = "coolwarm", 
+            s = 1 #Tamaño de los puntos
+        ) 
 
         plt.colorbar(graphic, label = label_graphic, pad = 0.05)
         if min_value != "" and max_value != "":
@@ -307,41 +308,47 @@ class BoundaryBox:
 
                 for i in self.boundary_df.index:
                     #self.kirsch_r(x_point, y_point, x_centre_geometry, y_centre_geometry)
-                    calc_r = self.kirsch_r(x_point = self.boundary_df["x"][i], 
-                                        y_point = self.boundary_df["y"][i], 
-                                        x_centre_geometry = geometry.x_centre, 
-                                        y_centre_geometry = geometry.y_centre
-                                        )
+                    calc_r = self.kirsch_r(
+                        x_point = self.boundary_df["x"][i], 
+                        y_point = self.boundary_df["y"][i], 
+                        x_centre_geometry = geometry.x_centre, 
+                        y_centre_geometry = geometry.y_centre
+                                        
+                    )
                     #self.kirsch_theta(x_point, y_point, x_centre_geometry, y_centre_geometry)
-                    calc_theta = self.kirsch_theta(x_point = self.boundary_df["x"][i], 
-                                                y_point = self.boundary_df["y"][i], 
-                                                x_centre_geometry = geometry.x_centre, 
-                                                y_centre_geometry = geometry.y_centre
-                                                )
+                    calc_theta = self.kirsch_theta(
+                        x_point = self.boundary_df["x"][i], 
+                        y_point = self.boundary_df["y"][i], 
+                        x_centre_geometry = geometry.x_centre, 
+                        y_centre_geometry = geometry.y_centre
+                    )
                     #self.kirsch_sigma_r(sx, sy, txy, r, a, theta)
-                    calc_sigma_r = self.kirsch_sigma_r(sx = self.sx_insitu, 
-                                                    sy = self.sy_insitu, 
-                                                    txy = self.txy_insitu, 
-                                                    r = calc_r, 
-                                                    a = geometry.radius, 
-                                                    theta = calc_theta
-                                                    )
+                    calc_sigma_r = self.kirsch_sigma_r(
+                        sx = self.sx_insitu, 
+                        sy = self.sy_insitu, 
+                        txy = self.txy_insitu, 
+                        r = calc_r, 
+                        a = geometry.radius, 
+                        theta = calc_theta
+                    )
                     #self.kirsch_sigma_theta(sx, sy, txy, r, a, theta)
-                    calc_sigma_theta = self.kirsch_sigma_theta(sx = self.sx_insitu, 
-                                                            sy = self.sy_insitu, 
-                                                            txy = self.txy_insitu, 
-                                                            r = calc_r, 
-                                                            a = geometry.radius, 
-                                                            theta = calc_theta
-                                                            )
+                    calc_sigma_theta = self.kirsch_sigma_theta(
+                        sx = self.sx_insitu, 
+                        sy = self.sy_insitu, 
+                        txy = self.txy_insitu, 
+                        r = calc_r, 
+                        a = geometry.radius, 
+                        theta = calc_theta
+                    )
                     #self.kirsch_tau_r_theta(sx, sy, txy, r, a, theta)
-                    calc_tau_r_theta = self.kirsch_tau_r_theta(sx = self.sx_insitu, 
-                                                            sy = self.sy_insitu, 
-                                                            txy = self.txy_insitu, 
-                                                            r = calc_r, 
-                                                            a = geometry.radius, 
-                                                            theta = calc_theta
-                                                            )
+                    calc_tau_r_theta = self.kirsch_tau_r_theta(
+                        sx = self.sx_insitu, 
+                        sy = self.sy_insitu, 
+                        txy = self.txy_insitu, 
+                        r = calc_r, 
+                        a = geometry.radius, 
+                        theta = calc_theta
+                    )
 
                     #Guardado de datos por iteración en las listas temporales
                     r.append(calc_r)
@@ -410,36 +417,42 @@ class BoundaryBox:
                     # Cálculo de esfuerzos 
                     # "tf" se refiere a que calcula esfuerzos en la coordenada (x',y') transformada
                     #kirsch_ellipse_sigma_r(self, p, e0, e, C, J, K, phi, beta):
-                    calc_sigma_r_tf = self.kirsch_ellipse_sigma_r(p = self.p_ellipse, e0 = calc_e0, e = calc_e, 
-                                                                C = calc_C, J = calc_J, K = self.K_ellipse, 
-                                                                phi = calc_phi, beta = geometry.beta
-                                                                )
+                    calc_sigma_r_tf = self.kirsch_ellipse_sigma_r(
+                        p = self.p_ellipse, e0 = calc_e0, e = calc_e, 
+                        C = calc_C, J = calc_J, K = self.K_ellipse, 
+                        phi = calc_phi, beta = geometry.beta
+                    )
                     #kirsch_ellipse_sigma_theta(self, p, e0, e, J, K, phi, beta, sigma_r):
-                    calc_sigma_theta_tf = self.kirsch_ellipse_sigma_theta(p = self.p_ellipse, e0 = calc_e0, e = calc_e,
-                                                                        J = calc_J, K = self.K_ellipse, phi = calc_phi,
-                                                                        beta = geometry.beta, sigma_r = calc_sigma_r_tf
-                                                                        )
+                    calc_sigma_theta_tf = self.kirsch_ellipse_sigma_theta(
+                        p = self.p_ellipse, e0 = calc_e0, e = calc_e,
+                        J = calc_J, K = self.K_ellipse, phi = calc_phi,
+                        beta = geometry.beta, sigma_r = calc_sigma_r_tf
+                    )
                     #kirsch_ellipse_tau_r_theta(self, p, e0, e, C, J, K, phi, beta):
-                    calc_tau_r_theta_tf = self.kirsch_ellipse_tau_r_theta(p = self.p_ellipse, e0 = calc_e0, e = calc_e, 
-                                                                        C = calc_C, J = calc_J, K = self.K_ellipse, 
-                                                                        phi = calc_phi, beta = geometry.beta
-                                                                        )
+                    calc_tau_r_theta_tf = self.kirsch_ellipse_tau_r_theta(
+                        p = self.p_ellipse, e0 = calc_e0, e = calc_e, 
+                        C = calc_C, J = calc_J, K = self.K_ellipse, 
+                        phi = calc_phi, beta = geometry.beta
+                    )
                     ###Rotación a sistema (x,y) (Rotación en base a inclinación de esfuerzo P -> angle_P)
-                    calc_sigma_r = self.rotate_sigma_x(sx = calc_sigma_r_tf, 
-                                                    sy = calc_sigma_theta_tf, 
-                                                    txy = calc_tau_r_theta_tf, 
-                                                    theta = -self.angle_P
-                                                    )
-                    calc_sigma_theta = self.rotate_sigma_y(sx = calc_sigma_r_tf, 
-                                                        sy = calc_sigma_theta_tf, 
-                                                        txy = calc_tau_r_theta_tf, 
-                                                        theta = -self.angle_P
-                                                        )
-                    calc_tau_r_theta = self.rotate_tau_xy(sx = calc_sigma_r_tf, 
-                                                        sy = calc_sigma_theta_tf, 
-                                                        txy = calc_tau_r_theta_tf, 
-                                                        theta = -self.angle_P
-                                                        )
+                    calc_sigma_r = self.rotate_sigma_x(
+                        sx = calc_sigma_r_tf, 
+                        sy = calc_sigma_theta_tf, 
+                        txy = calc_tau_r_theta_tf, 
+                        theta = -self.angle_P
+                    )
+                    calc_sigma_theta = self.rotate_sigma_y(
+                        sx = calc_sigma_r_tf, 
+                        sy = calc_sigma_theta_tf, 
+                        txy = calc_tau_r_theta_tf, 
+                        theta = -self.angle_P
+                    )
+                    calc_tau_r_theta = self.rotate_tau_xy(
+                        sx = calc_sigma_r_tf, 
+                        sy = calc_sigma_theta_tf, 
+                        txy = calc_tau_r_theta_tf, 
+                        theta = -self.angle_P
+                    )
                     #Guardado de datos por iteración en las listas temporales
                     ######GUARDADOS AUXILIARES
                     #e0.append(calc_e0)
@@ -489,21 +502,24 @@ class BoundaryBox:
             
             #Rotación de esfuerzos por geometría
             for geometry in self.geometries:
-                rotated_sx_geometry = self.rotate_sigma_x(sx = self.boundary_df[geometry.name+"_sigma_r"][i],
-                                                        sy = self.boundary_df[geometry.name+"_sigma_theta"][i],
-                                                        txy = self.boundary_df[geometry.name+"_tau_r_theta"][i],
-                                                        theta = -self.boundary_df[geometry.name+"_theta"][i]
-                                                        )
-                rotated_sy_geometry = self.rotate_sigma_y(sx = self.boundary_df[geometry.name+"_sigma_r"][i],
-                                                        sy = self.boundary_df[geometry.name+"_sigma_theta"][i],
-                                                        txy = self.boundary_df[geometry.name+"_tau_r_theta"][i],
-                                                        theta = -self.boundary_df[geometry.name+"_theta"][i]
-                                                        )
-                rotated_txy_geometry = self.rotate_tau_xy(sx = self.boundary_df[geometry.name+"_sigma_r"][i],
-                                                        sy = self.boundary_df[geometry.name+"_sigma_theta"][i],
-                                                        txy = self.boundary_df[geometry.name+"_tau_r_theta"][i],
-                                                        theta = -self.boundary_df[geometry.name+"_theta"][i]
-                                                        )
+                rotated_sx_geometry = self.rotate_sigma_x(
+                    sx = self.boundary_df[geometry.name+"_sigma_r"][i],
+                    sy = self.boundary_df[geometry.name+"_sigma_theta"][i],
+                    txy = self.boundary_df[geometry.name+"_tau_r_theta"][i],
+                    theta = -self.boundary_df[geometry.name+"_theta"][i]
+                )
+                rotated_sy_geometry = self.rotate_sigma_y(
+                    sx = self.boundary_df[geometry.name+"_sigma_r"][i],
+                    sy = self.boundary_df[geometry.name+"_sigma_theta"][i],
+                    txy = self.boundary_df[geometry.name+"_tau_r_theta"][i],
+                    theta = -self.boundary_df[geometry.name+"_theta"][i]
+                )
+                rotated_txy_geometry = self.rotate_tau_xy(
+                    sx = self.boundary_df[geometry.name+"_sigma_r"][i],
+                    sy = self.boundary_df[geometry.name+"_sigma_theta"][i],
+                    txy = self.boundary_df[geometry.name+"_tau_r_theta"][i],
+                    theta = -self.boundary_df[geometry.name+"_theta"][i]
+                )
 
                 #Suma de contribuciones por geometría en cada componente
                 calc_sx += rotated_sx_geometry - self.sx_insitu
@@ -529,18 +545,21 @@ class BoundaryBox:
         stress_max_shear = []
 
         for i in self.boundary_df.index:
-            calc_p = self.principal_stress_P(sx = self.boundary_df["Sx"][i], 
-                                            sy = self.boundary_df["Sy"][i], 
-                                            txy = self.boundary_df["Txy"][i]
-                                            )
-            calc_q = self.principal_stress_Q(sx = self.boundary_df["Sx"][i], 
-                                            sy = self.boundary_df["Sy"][i], 
-                                            txy = self.boundary_df["Txy"][i]
-                                            )
-            calc_tmax = self.principal_stress_max_shear(sx = self.boundary_df["Sx"][i], 
-                                                        sy = self.boundary_df["Sy"][i], 
-                                                        txy = self.boundary_df["Txy"][i]
-                                                        )
+            calc_p = self.principal_stress_P(
+                sx = self.boundary_df["Sx"][i], 
+                sy = self.boundary_df["Sy"][i], 
+                txy = self.boundary_df["Txy"][i]
+            )
+            calc_q = self.principal_stress_Q(
+                sx = self.boundary_df["Sx"][i], 
+                sy = self.boundary_df["Sy"][i], 
+                txy = self.boundary_df["Txy"][i]
+            )
+            calc_tmax = self.principal_stress_max_shear(
+                sx = self.boundary_df["Sx"][i], 
+                sy = self.boundary_df["Sy"][i], 
+                txy = self.boundary_df["Txy"][i]
+            )
 
             stress_P.append(calc_p)
             stress_Q.append(calc_q)
@@ -559,15 +578,17 @@ class BoundaryBox:
 
         for i in self.boundary_df.index:
             #hoek_brown_S1(self, s3, sci_rock, mi_rock, gsi_rockmass)
-            calc_p_rockmass = self.hoek_brown_S1(s3 = self.boundary_df["Q"][i],
-                                                sci_rock = sci,
-                                                mi_rock = mi,
-                                                gsi_rockmass = gsi
-                                                )
+            calc_p_rockmass = self.hoek_brown_S1(
+                s3 = self.boundary_df["Q"][i],
+                sci_rock = sci,
+                mi_rock = mi,
+                gsi_rockmass = gsi
+            )
             #strength_factor(self, s1_induced, s1_rockmass)
-            calc_strength_factor = self.strength_factor(s1_induced = self.boundary_df["P"][i], 
-                                                        s1_rockmass = calc_p_rockmass
-                                                        )
+            calc_strength_factor = self.strength_factor(
+                s1_induced = self.boundary_df["P"][i], 
+                s1_rockmass = calc_p_rockmass
+            )
             P_rockmass.append(calc_p_rockmass)
             strength_factor.append(calc_strength_factor)
 
