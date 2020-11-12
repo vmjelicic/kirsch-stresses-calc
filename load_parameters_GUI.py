@@ -265,14 +265,14 @@ class LoadParametersFrame(ttk.Frame):
         beta = float(self.beta_ellipse_entry.get())
 
         #Creación del objeto Geometry_ellipse
-        new_geometry_ellipse = Geometry_ellipse(name=name, x_centre=x_centre, y_centre=y_centre, W=width, H=height, beta=beta)
+        new_geometry_ellipse = Geometry_ellipse(name=name, x_centre=x_centre, y_centre=y_centre, width=width, height=height, beta=beta)
         #Guardado de objeto
         global geometries
         geometries.append(new_geometry_ellipse)
 
         #Escritura de registro en el widget text
         self.saved_parameters_text.config(state="normal")
-        self.saved_parameters_text.insert(tk.END, "Geometry_ellipse(name={}, x_centre={}, y_centre={}, W={}, H={}, beta={})\n".format(name, x_centre, y_centre, width, height, beta))
+        self.saved_parameters_text.insert(tk.END, "Geometry_ellipse(name={}, x_centre={}, y_centre={}, width={}, height={}, beta={})\n".format(name, x_centre, y_centre, width, height, beta))
         self.saved_parameters_text.config(state="disabled")
 
         #Limpieza de entries

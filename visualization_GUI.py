@@ -104,9 +104,9 @@ class VisualizationFrame(ttk.Frame):
 
                 elif geometry.__class__.__name__ == "Geometry_ellipse":
                     #Generar puntos en el sistema de referencia (x,y)
-                    x_geom = [x + geometry.x_centre - (geometry.W/2) for x in np.arange(0, geometry.W + 1, 1)]
-                    y_geom_u = [(geometry.H/2)*np.sqrt(1-((x-geometry.x_centre)/(geometry.W/2))**2) + geometry.y_centre for x in x_geom]
-                    y_geom_l = [-(geometry.H/2)*np.sqrt(1-((x-geometry.x_centre)/(geometry.W/2))**2) + geometry.y_centre for x in x_geom]
+                    x_geom = [x + geometry.x_centre - (geometry.width/2) for x in np.arange(0, geometry.width + 1, 1)]
+                    y_geom_u = [(geometry.height/2)*np.sqrt(1-((x-geometry.x_centre)/(geometry.width/2))**2) + geometry.y_centre for x in x_geom]
+                    y_geom_l = [-(geometry.height/2)*np.sqrt(1-((x-geometry.x_centre)/(geometry.width/2))**2) + geometry.y_centre for x in x_geom]
                 
                     x_geom_upper = [1 for x in range(len(x_geom))]
                     y_geom_upper_contour = [1 for x in range(len(x_geom))]

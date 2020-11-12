@@ -16,9 +16,9 @@ class Geometry_circle:
 
 # Geometría Elíptica
 class Geometry_ellipse:
-    def __init__(self, name, x_centre, y_centre, W, H, beta):
+    def __init__(self, name, x_centre, y_centre, width, height, beta):
         #Comprobación de parámetros correctos
-        if W == H:
+        if width == height:
             print("Invalid ellipse dimensions")
         else:
             #Id de geometría
@@ -27,9 +27,9 @@ class Geometry_ellipse:
             self.x_centre = x_centre
             self.y_centre = y_centre
             #Extensión de ejes de elipse 
-            #Semiejes son W/2 y H/2
-            self.W = W
-            self.H = H
+            #Semiejes son width/2 y height/2
+            self.width = width
+            self.height = height
             #Ángulo de inclinación de la elipse
             self.beta = np.radians(beta)
             print("Geometry (ellipse) parameters saved")
@@ -84,7 +84,7 @@ class BoundaryBox:
                         x_tf = self.transform_x(x = i-geometry.x_centre, y = j-geometry.y_centre, theta = geometry.beta) + geometry.x_centre
                         y_tf = self.transform_y(x = i-geometry.x_centre, y = j-geometry.y_centre, theta = geometry.beta) + geometry.y_centre
 
-                        if (((x_tf-geometry.x_centre)**2)/((geometry.W/2)**2) + ((y_tf-geometry.y_centre)**2)/((geometry.H/2)**2)) < 1:
+                        if (((x_tf-geometry.x_centre)**2)/((geometry.width/2)**2) + ((y_tf-geometry.y_centre)**2)/((geometry.height/2)**2)) < 1:
                             out_of_geometry = False
 
                 if out_of_geometry:
@@ -126,16 +126,16 @@ class BoundaryBox:
 
     # Esfuerzos inducidos (Elipse)
         # Cálculo de variable auxiliar "e0"
-    def kirsch_ellipse_e0(self, W, H):
-        return (W+H)/(W-H)
+    def kirsch_ellipse_e0(self, width, height):
+        return (width + height)/(width-height)
 
     # Cálculo de variable auxiliar "b"
-    def kirsch_ellipse_b(self, W, H, x1, z1):
-        return (4*(x1**2 + z1**2))/(W**2 - H**2)
+    def kirsch_ellipse_b(self, width, height, x1, z1):
+        return (4*(x1**2 + z1**2))/(width**2 - height**2)
 
     # Cálculo de variable auxiliar "d"
-    def kirsch_ellipse_d(self, W, H, x1, z1):
-        return (8*(x1**2 - z1**2))/(W**2 - H**2) - 1
+    def kirsch_ellipse_d(self, width, height, x1, z1):
+        return (8*(x1**2 - z1**2))/(width**2 - height**2) - 1
 
     # Cálculo de variable auxiliar "u"
     def kirsch_ellipse_u(self, b, e0, d):
@@ -262,9 +262,9 @@ class BoundaryBox:
 
             elif geometry.__class__.__name__ == "Geometry_ellipse":
                 #Generar puntos en el sistema de referencia (x,y)
-                x_geom = [x + geometry.x_centre - (geometry.W/2) for x in np.arange(0, geometry.W + 1, 1)]
-                y_geom_u = [(geometry.H/2)*np.sqrt(1-((x-geometry.x_centre)/(geometry.W/2))**2) + geometry.y_centre for x in x_geom]
-                y_geom_l = [-(geometry.H/2)*np.sqrt(1-((x-geometry.x_centre)/(geometry.W/2))**2) + geometry.y_centre for x in x_geom]
+                x_geom = [x + geometry.x_centre - (geometry.width/2) for x in np.arange(0, geometry.width + 1, 1)]
+                y_geom_u = [(geometry.height/2)*np.sqrt(1-((x-geometry.x_centre)/(geometry.width/2))**2) + geometry.y_centre for x in x_geom]
+                y_geom_l = [-(geometry.height/2)*np.sqrt(1-((x-geometry.x_centre)/(geometry.width/2))**2) + geometry.y_centre for x in x_geom]
 
                 x_geom_upper = [1 for x in range(len(x_geom))]
                 y_geom_upper_contour = [1 for x in range(len(x_geom))]
@@ -387,14 +387,14 @@ class BoundaryBox:
                     x_t = self.transform_x(x = self.boundary_df["x"][i]-geometry.x_centre, y = self.boundary_df["y"][i]-geometry.y_centre, theta = self.angle_P) 
                     y_t = self.transform_y(x = self.boundary_df["x"][i]-geometry.x_centre, y = self.boundary_df["y"][i]-geometry.y_centre, theta = self.angle_P) 
 
-                    #kirsch_ellipse_e0(self, W, H):
-                    calc_e0 = self.kirsch_ellipse_e0(W = geometry.W, H = geometry.H)
+                    #kirsch_ellipse_e0(self, width, height):
+                    calc_e0 = self.kirsch_ellipse_e0(width = geometry.width, height = geometry.height)
 
-                    #kirsch_ellipse_b(self, W, H, x1, z1):
-                    calc_b = self.kirsch_ellipse_b(W = geometry.W, H = geometry.H, x1 = x_t, z1 = y_t)
+                    #kirsch_ellipse_b(self, width, height, x1, z1):
+                    calc_b = self.kirsch_ellipse_b(width = geometry.width, height = geometry.height, x1 = x_t, z1 = y_t)
 
                     #kirsch_ellipse_d(self, W, H, x1, z1):
-                    calc_d = self.kirsch_ellipse_d(W = geometry.W, H = geometry.H, x1 = x_t, z1 = y_t)
+                    calc_d = self.kirsch_ellipse_d(width = geometry.width, height = geometry.height, x1 = x_t, z1 = y_t)
 
                     #kirsch_ellipse_u(self, b, e0, d):
                     calc_u = self.kirsch_ellipse_u(b = calc_b, e0 = calc_e0, d = calc_d)
